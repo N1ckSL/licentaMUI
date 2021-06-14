@@ -45,9 +45,9 @@ const userControl = {
       sendMail(
         email,
         url,
-        "Welcome to the",
-        "Congratulations! You're almost set to start using eLearning Platform.",
-        "Verify account"
+        "Bun venit la",
+        "Felicitări! Sunteți la un pas de a vă înregistra. Pentru a vă verifica, tastați butonul de mai jos",
+        "Verifică utilizator"
       );
       res.json({ msg: "Înregistrare efectuata. Vă rugăm să vă verificați email-ul!" });
     } catch (err) {
@@ -132,11 +132,11 @@ const userControl = {
       sendMail(
         email,
         url,
-        "Reseting password from",
-        "To proceed to reseting the password",
-        "Reset Password"
+        "Resetare parolă utilizator",
+        "Pentru a vă reseta parola",
+        "Resetare Parolă"
       );
-      res.json({ msg: "Verificati-va posta" });
+      res.json({ msg: "Verificați-vă poșta" });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
@@ -154,7 +154,7 @@ const userControl = {
         }
       );
 
-      res.json({ msg: "Password successfully changed!" });
+      res.json({ msg: "Parola a fost modificată cu succes!" });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
@@ -250,7 +250,7 @@ const userControl = {
 
         if(user){
             const isMatch = await bcrypt.compare(password, user.password)
-            if(!isMatch) return res.status(400).json({msg: "Password is incorrect."})
+            if(!isMatch) return res.status(400).json({msg: "Parola este incorectă."})
 
             const refresh_token = createRefreshToken({id: user._id})
             res.cookie('refreshtoken', refresh_token, {

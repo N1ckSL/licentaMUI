@@ -37,17 +37,15 @@ const sendEmail = (to, url, headerTxt, contentTxt, txt) => {
     const mailOptions = {
         from: SENDER_EMAIL_ADDRESS,
         to: to,
-        subject: "Platforma Online de Invatat",
+        subject: "Platforma Online eSchool",
         html: `
         <div style="max-width: 700px; margin:auto; border: 10px solid #ddd; padding: 50px 20px; font-size: 110%;">
             <h2 style="text-align: center; text-transform: uppercase;color: teal;">${headerTxt} eSchool.</h2>
-            <p>${contentTxt}
-                Just click the button below.
-            </p>
+            <p>${contentTxt}</p>
             
             <a href=${url} style="background: crimson; text-decoration: none; color: white; padding: 10px 20px; margin: 10px 0; display: inline-block;">${txt}</a>
         
-            <p>If the button doesn't work for any reason, you can also click on the link below:</p>
+            <p>Daca butonul nu lucrează, puteți accesa link-ul de mai jos.:</p>
         
             <div>${url}</div>
             </div>
