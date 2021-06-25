@@ -1,34 +1,31 @@
 import React from "react";
 import "../anunturi/anunturi.css";
 
-import { Carousel } from "antd";
-
-
 function Anunturi() {
   return (
     <div className="page__wrapper">
-      <Carousel autoplay>
-        <div>
-          <h3 className="slider">
-            <div className="image unu"></div>
-          </h3>
+      <div className="page__welcome">
+        <h1>Bine ati venit la eSchool</h1>
+      </div>
+      <div className="page__content">
+        <div className="left__column">
+          <div className="column__content">hey hey</div>
+          <div className="column__content">hey hey</div>
         </div>
-        <div>
-          <h3 className="slider">
-            <div className="image doi"></div>
-          </h3>
+        <div className="right__column">
+          <div className="column__content">hey right</div>
+          <div className="column__content">hey right</div>
+          <div className="column__content">hey right</div>
         </div>
-        <div>
-          <h3 className="slider">
-            <div className="image trei"></div>
-          </h3>
+        <div className="map__wrapper">
+          <div className="map__content">
+            <div className="map__text">roflan im here</div>
+          </div>
         </div>
-        <div>
-          <h3 className="slider">
-            <div className="image patru"></div>
-          </h3>
+        <div className="footer">
+          <div className="footer__content">footer right here dude</div>
         </div>
-      </Carousel>
+      </div>
     </div>
   );
 }

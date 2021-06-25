@@ -3,7 +3,7 @@ const userSubject = require("../models/userSubjectsModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const sendMail = require("./sendMail");
-
+const path = require("path")
 const { google } = require("googleapis");
 const { OAuth2 } = google.auth;
 
@@ -315,6 +315,26 @@ updateSubject: async (req, res) => {
     );
     res.json({ msg: "Subject Update Success" });
   } catch (err) {
+    return res.status(500).json({ msg: err.message });
+  }
+},
+updateOrar: async (req, res) => {
+  try {
+    const type = req.body.type;
+    const photo = req.files.photo;
+    var ext = path.extname(photo.name);
+    
+    photo.mv(`client/public/uploads/${type}.png`, (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        
+      }
+    });
+
+    res.json({ msg: photo });
+  } catch (err) {
+    console.log("error Orar")
     return res.status(500).json({ msg: err.message });
   }
 },

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector, useDispatch } from "react-redux";
 import "../orar/orar.css";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -7,6 +8,11 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+
+import axios from "axios";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -21,7 +27,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={3}>
-          <Typography>{children}</Typography>
+          <Typography component={'div'}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -44,13 +50,41 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "#4c4c4c",
+    '& > *': {
+      margin: theme.spacing(1)
+    },
+    marginTop:"-100px"
+  },
+  input: {
+    display: 'none',
   },
 }));
 
-export default function Orar() {
+const Orar = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [photo, setPhoto] = React.useState(0);
+
+  const auth = useSelector((state) => state.login);
+  const { isAdmin, isSecretar } = auth;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("type", value);
+    formData.append("photo", photo);
+
+    axios.post("/user/update_orar", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  };
+
+  const handlePhoto = (e) => {
+    setPhoto(e.target.files[0]);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -62,7 +96,7 @@ export default function Orar() {
         position="static"
         style={{
           background: "#4C4C4C",
-          height: 50,
+          height: 5,
           display: "flex",
           alignItems: "center",
         }}
@@ -78,14 +112,36 @@ export default function Orar() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <div className="img"></div>
+        <div className="img">
+          <img src="/uploads/0.png"></img>
+        </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <div className="img">
+          <img src="/uploads/1.png"></img>
+        </div>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        <div className="img">
+           <img src="/uploads/2.png"></img>
+        </div>
       </TabPanel>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
+        { (isAdmin || isSecretar) &&
+      <div className={classes.root}>
+      <input accept="image/*" className={classes.input} id="icon-button-file" type="file" onChange={handlePhoto}/>
+      <label htmlFor="icon-button-file">
+        <IconButton color="secondary" aria-label="upload picture" component="span" >
+          <PhotoCamera />
+        </IconButton>
+      </label>
+      <Button type="submit" color="secondary" variant="contained" size="medium" disabled={photo === 0}> {photo === 0 ? "Selectati poza": "Modifica"}
+        </Button>
+    </div>
+    }
+      </form>
     </div>
   );
-}
+};
+
+export default Orar;

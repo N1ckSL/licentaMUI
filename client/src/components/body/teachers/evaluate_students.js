@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { Button, TextField } from "@material-ui/core";
-import CreateIcon from '@material-ui/icons/Create';
+import CreateIcon from "@material-ui/icons/Create";
 
 export function EvaluateStudents(props) {
   const { year, dataUserSubjects } = props;
@@ -15,6 +15,9 @@ export function EvaluateStudents(props) {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const [state, setState] = useState(true);
+
   const auth = useSelector((state) => state.login);
   const { user } = auth;
   useEffect(() => {
@@ -113,35 +116,32 @@ export function EvaluateStudents(props) {
       setSuccess(false);
       setError("");
       let resp = null;
-      // if(idGrade){
-      //     resp = await axios.patch(
-      //     `subjectGrade/update/${idGrade}`,
-      //         {
-      //             grade: value
-      //         }
-      //     );
-      // }else{
+      if (value <= 10 && value >= 1) {
       resp = await axios.post(`subjectGrade/create`, {
         subjectStudent: id,
         partial: semester,
         grade: value,
       });
-      //}
-      if (resp.status === 200) {
-        setSuccess(true);
-        const ids = dataUserSubjects.reduce((ids, item) => {
-          if (item.subject._id === subjectAssigned) ids.push(item._id);
-          return ids;
-        }, []);
-        const getSubjectGrades = async () => {
-          const gradesSubject = await axios.post(`/subjectGrade/all`, {
-            ids,
-          });
-          setStudentsGrades(gradesSubject.data);
-        };
-        await getSubjectGrades();
+  
+        if (resp.status === 200) {
+          setSuccess(true);
+          const ids = dataUserSubjects.reduce((ids, item) => {
+            if (item.subject._id === subjectAssigned) ids.push(item._id);
+            return ids;
+          }, []);
+          const getSubjectGrades = async () => {
+            const gradesSubject = await axios.post(`/subjectGrade/all`, {
+              ids,
+            });
+            setStudentsGrades(gradesSubject.data);
+          };
+          await getSubjectGrades();
+        } else {
+          setError(resp.data.msg);
+        }
       } else {
-        setError(resp.data.msg);
+        alert("Nota trebuie sa fie între 1 și 10!");
+        setSuccess(false);
       }
     } catch (err) {
       setError(err.message);
@@ -150,7 +150,7 @@ export function EvaluateStudents(props) {
   };
   return (
     <div>
-      <h2>Evaluate students</h2>
+      <h2>Evaluează Elevi</h2>
       {error && <h3 style={{ color: "red" }}>{error}</h3>}
       {success && <h3 style={{ color: "green" }}>Nota a fost adăugată</h3>}
       {!subjectAssigned && <h3>Nu aveți nici o materia asociată</h3>}
@@ -164,15 +164,17 @@ export function EvaluateStudents(props) {
             >
               Selectează Semestrul
             </label>
-            <select
-              onChange={(e) => setSemester(e.target.value)}
-              name="semester"
-              id="semester"
-              style={{ color: "black", width: "100px", marginBottom: 15 }}
-            >
-              <option value="1">1</option>
-              <option value="2">2</option>
-            </select>
+            <span className="select">
+              <select
+                onChange={(e) => setSemester(e.target.value)}
+                name="semester"
+                id="semester"
+                style={{ color: "black", width: "100px", marginBottom: 15 }}
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+              </select>
+            </span>
           </div>
           <table className="table__date">
             <thead>
@@ -204,16 +206,21 @@ export function EvaluateStudents(props) {
                               onChange={(ev) => updateGrade(ev)}
                               disabled={loading}
                               size="small"
-                              InputLabelProps={{style: {fontSize: 18, color:"#3F51B5"}}}
+                              InputLabelProps={{
+                                style: { fontSize: 18, color: "#3F51B5" },
+                              }}
                               InputProps={{
-                                  style: {
-                                      fontSize:18, fontWeight:"bold"
-                                  },
+                                style: {
+                                  fontSize: 18,
+                                  fontWeight: "bold",
+                                  pattern: "^[0-9]{1,10}$",
+                                },
+                                readOnly: true,
                                 inputProps: {
                                   min: 1,
                                   max: 10,
-                                  maxLength: 2,
-                                //   pattern: "^[1-9]d*$",
+                                  pattern: "^^[0-9]{1,10}$",
+                                  readOnly: false,
                                 },
                               }}
                               style={{ width: 150, marginLeft: 10 }}
@@ -242,9 +249,10 @@ export function EvaluateStudents(props) {
                               subject._id,
                               subject.gradeData.grade,
                               subject.gradeData._id
-                            )}
-                            style={{marginLeft:35, marginTop:8}}
-                            startIcon={<CreateIcon/>}
+                            )
+                          }
+                          style={{ marginLeft: 35, marginTop: 8 }}
+                          startIcon={<CreateIcon />}
                         >
                           Notează
                         </Button>

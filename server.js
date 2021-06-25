@@ -1,21 +1,19 @@
 require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
-const cors = require('cors')
 const cookieParser = require('cookie-parser')
-const fileUpload = require('express-fileupload')
 const Years = require('./models/yearModel')
 const Users = require('./models/userModel')
 const bcrypt = require("bcrypt");
+const cors = require('cors')
+const fileUpload = require('express-fileupload')
+
 
 const app = express()
 app.use(express.json())
 app.use(cors())
 app.use(cookieParser())
-app.use(fileUpload({
-    uploadTimeout:true
-}))
-
+app.use(fileUpload())
 
 // Routes
 app.use('/user',require('./routes/userRouter'))
@@ -24,6 +22,24 @@ app.use('/subject',require('./routes/subjectRouter'))
 app.use('/year',require('./routes/yearRouter'))
 app.use('/userSubject',require('./routes/userSubjectRouter'))
 app.use('/subjectGrade',require('./routes/subjectGradeRouter'))
+
+app.post('/upload', (req, res) => {
+    if (req.files === null) {
+      return res.status(400).json({ msg: 'No file uploaded' });
+    }
+  
+    const file = req.files.file;
+    const fileName = "orar.jpg"+file.name
+  
+    file.mv(`${__dirname}/client/public/uploads/${file.name}`, err => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send(err);
+      }
+  
+      res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
+    });
+  });
 
 // Conexiunea la mongoDB
 const URI = process.env.MONGODB_URL
@@ -37,6 +53,7 @@ mongoose.connect(URI, {
     console.log("Connected to MongoDB!");
 })
 
+
 const PORT = process.env.PORT || 5000 
 app.listen(PORT, () => {
     console.log('Server running on port: ', PORT)
@@ -48,6 +65,9 @@ module.exports.ElevInstanta = require("./models/elevModelInstanta")
 module.exports.Profesor = require("./models/profesorModel")
 module.exports.Secretar = require("./models/secretarModel")
 module.exports.Note = require("./models/noteModel")
+
+
+//Adaugare informatie predefinita in baza de date empty 
 
 Years.find().then(yearsInfo => {
     //if database is empty insert default years

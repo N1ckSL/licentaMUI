@@ -31,6 +31,8 @@ router.delete('/delete/:id',auth, authAdmin, userControl.deleteUser)
 
 router.patch('/update_subject/:id', userControl.updateSubject)
 
+router.post('/update_orar', userControl.updateOrar)
+
 // GOOGLE
 
 router.post('/google_login', userControl.googleLogin)

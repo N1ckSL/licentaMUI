@@ -47,7 +47,7 @@ export default function App() {
   return (
     <Router>
       <React.Fragment>
-        <Container maxWidth="lg">
+        <Container maxWidth="lg"> {/* COMMENT pentru width mai mare */}
       <div className="App">
         <Header />
         <Body />
