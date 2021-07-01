@@ -9,6 +9,7 @@ export function ReviewGrades(props) {
   const { user, isProfessor } = auth;
   const [semester, setSemester] = useState(1);
   const [studentsGrades, setStudentsGrades] = useState([]);
+  let data = null
 
   useEffect(() => {
     let isSubscribed = true;
@@ -43,7 +44,7 @@ export function ReviewGrades(props) {
           } else {
             if (prevPartial == gradesSubject.data[i].partial)
               gradesSubjectData[gradesSubjectData.length - 1].grade +=
-                ", " + gradesSubject.data[i].grade;
+                "," + gradesSubject.data[i].grade;
           }
         }
 
@@ -120,8 +121,13 @@ export function ReviewGrades(props) {
                         <span>{getSubjectName(grade.userSubject)}</span>
                       </td>
                       <td>{grade.grade}</td>
-                      <td>{ 
-                          grade.grade.split(',').map(v => Number(v)).reduce((a, c, i, arr) => {a += c; if (i === arr.length - 1) { a /= arr.length } return a}, 0).toFixed(2)
+                      <td>{
+                          typeof grade.grade === 'number'
+                          ? grade.grade
+                          : grade.grade.split(',')
+                            .map(v => Number(v))
+                            .reduce((a, c, i, arr) => { a += c; if (i === arr.length - 1) { a /= arr.length } return a }, 0)
+                            .toFixed(2)
                       }
                       </td>
                     </tr>

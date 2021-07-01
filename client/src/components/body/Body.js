@@ -8,7 +8,7 @@ import ResetPassword from "../body/login/ResetPassword";
 import ActivationEmail from "./login/ActivationEmail";
 import NotFound from "../utils/NotFound/NotFound";
 
-import Anunturi from "./anunturi/Anunturi";
+import Acasa from "./anunturi/Acasa";
 import Personal from "./personal/Personal";
 import Orar from "./orar/Orar";
 import Profile from "./profile/Profile";
@@ -22,7 +22,7 @@ function Body() {
   return (
     <section>
       <Switch>
-        <Route path="/" component={  NotFound && Anunturi} exact />
+        <Route path="/" component={  NotFound && Acasa} exact />
 
         <Route path="/login" component={isLogged ? NotFound : Login} exact />
         <Route path="/register" component={isLogged ? NotFound : Register} exact />

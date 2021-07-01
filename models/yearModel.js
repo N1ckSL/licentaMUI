@@ -4,7 +4,7 @@ const yearSchema = new mongoose.Schema(
   {
     value: {
       type: Number,
-      required: [true, "Va rugam sa va introduceti numele!"]
+      required: [true, "Va rugam sa va introduceti anul!"]
     }
   },
   { timestamps: true }

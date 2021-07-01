@@ -9,8 +9,7 @@ import { dispatchLogin } from "../../../redux/actions/loginAction";
 import { useDispatch } from "react-redux";
 import { GoogleLogin } from "react-google-login";
 
-import TextField from '@material-ui/core/TextField';
-
+import TextField from "@material-ui/core/TextField";
 
 const initialState = {
   email: "",
@@ -23,7 +22,6 @@ function Login() {
   const [user, setUser] = useState(initialState);
   const dispatch = useDispatch();
   const history = useHistory();
-
   const { email, password, err, success } = user;
 
   const handleChangeInput = (e) => {
@@ -49,18 +47,20 @@ function Login() {
 
   const responseGoogle = async (response) => {
     try {
-        const res = await axios.post('/user/google_login', {tokenId: response.tokenId})
+      const res = await axios.post("/user/google_login", {
+        tokenId: response.tokenId,
+      });
 
-        setUser({...user, error:'', success: res.data.msg})
-        localStorage.setItem('firstLogin', true)
+      setUser({ ...user, error: "", success: res.data.msg });
+      localStorage.setItem("firstLogin", true);
 
-        dispatch(dispatchLogin())
-        history.push('/')
+      dispatch(dispatchLogin());
+      history.push("/");
     } catch (err) {
-        err.response.data.msg && 
-        setUser({...user, err: err.response.data.msg, success: ''})
+      err.response.data.msg &&
+        setUser({ ...user, err: err.response.data.msg, success: "" });
     }
-}
+  };
 
   return (
     <div className="login__page">
@@ -69,33 +69,30 @@ function Login() {
       {success && showSuccessMsg(success)}
 
       <form onSubmit={handleSubmit}>
+        <TextField
+          required
+          id="email"
+          label="Email"
+          size="medium"
+          name="email"
+          placeholder="Introduceti Email"
+          value={email}
+          onChange={handleChangeInput}
+          style={{ width: 450 }}
+        />
 
-
-        <TextField required id="email" label="Email" size="medium" name="email" placeholder="Introduceti Email" value={email} onChange={handleChangeInput} style={{width:450}}/>
-
-        <TextField required id="password" label="Parola" size="medium" name="password" placeholder="Introduceti Parola" value={password} type="password" onChange={handleChangeInput} style={{width:450}}/>
-
-          {/* <label htmlFor="email">Email Adress</label>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            id="email"
-            value={email}
-            name="email"
-            onChange={handleChangeInput}
-          /> */}
-
-        {/* <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            placeholder="Enter your password"
-            id="password"
-            value={password}
-            name="password"
-            onChange={handleChangeInput}
-          />
-        </div> */}
+        <TextField
+          required
+          id="password"
+          label="Parola"
+          size="medium"
+          name="password"
+          placeholder="Introduceti Parola"
+          value={password}
+          type="password"
+          onChange={handleChangeInput}
+          style={{ width: 450 }}
+        />
 
         <div className="row">
           <button type="submit">Login</button>
@@ -113,7 +110,7 @@ function Login() {
         />
       </div>
       <p>
-        Nu sunteți înregistrat? <Link to="/register">Înregistrare</Link> 
+        Nu sunteți înregistrat? <Link to="/register">Înregistrare</Link>
       </p>
     </div>
   );

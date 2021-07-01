@@ -93,6 +93,7 @@ const Orar = () => {
   return (
     <div className="orar__wrapper">
       <AppBar
+      className="appbar"
         position="static"
         style={{
           background: "#4C4C4C",

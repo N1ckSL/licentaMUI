@@ -262,7 +262,7 @@ const userControl = {
             res.json({msg: "Login success!"})
         }else{
             const newUser = new Users({
-                name, email, password: passwordHash, avatar: picture
+                name, email, password: passwordHash, role: 0
             })
 
             await newUser.save()
@@ -282,6 +282,7 @@ const userControl = {
         return res.status(500).json({msg: err.message})
     }
 },
+
 createAccount: async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
@@ -304,6 +305,7 @@ createAccount: async (req, res) => {
     return res.status(500).json({ msg: err.message });
   }
 },
+
 updateSubject: async (req, res) => {
   try {
     const { id, subject } = req.body;
@@ -318,6 +320,7 @@ updateSubject: async (req, res) => {
     return res.status(500).json({ msg: err.message });
   }
 },
+
 updateOrar: async (req, res) => {
   try {
     const type = req.body.type;

@@ -1,20 +1,16 @@
 import React, { useState, useEffect, Component } from "react";
-import "../anunturi/anunturi.css";
+import "../anunturi/Acasa.css";
 
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
 
 function Personal() {
   return (
     <div className="page__wrapper">
-      <Accordion className="accordion">
+      <Accordion className="accordion" style={{color:"#000"}}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
