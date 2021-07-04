@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -222,7 +222,6 @@ function Profile() {
       <div className="profile__page">
         <div className="col-left">
           <h2>
-            {" "}
             {(isAdmin && "Profil Admin") ||
               (isProfessor && "Profil Profesor") ||
               (isSecretar && "Profil Secretar") ||

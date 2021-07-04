@@ -46,14 +46,7 @@ export default function Subjects(props) {
           className="materie__input"
           style={{ marginRight: 10, marginBottom: 15 }}
         />
-        {/* <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    value={dataSubject.name}
-                    placeholder="Materie noua"
-                    onChange={handleChange}
-                    /> */}
+
         <Button
           variant="contained"
           color="primary"
@@ -61,12 +54,7 @@ export default function Subjects(props) {
         >
           Adauga
         </Button>
-        {/* <button
-          className={"btn-black"}
-          onClick={() => saveSubjectLocal(dataSubject)}
-        >
-          Save
-        </button> */}
+
       </div>
       <table className="table__date" style={{ textAlign: "center" }}>
         <thead>

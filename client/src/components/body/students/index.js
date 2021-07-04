@@ -140,7 +140,6 @@ export default function Students(props) {
             );
           })}
         </Select>
-        <div></div>
       </div>
       <table className="table__date">
         <thead>

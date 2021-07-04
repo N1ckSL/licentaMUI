@@ -15,9 +15,6 @@ export function EvaluateStudents(props) {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  const [state, setState] = useState(true);
-
   const auth = useSelector((state) => state.login);
   const { user } = auth;
   useEffect(() => {
@@ -38,6 +35,7 @@ export function EvaluateStudents(props) {
     getSubjectAssigned();
     setSemester(1);
   }, [year, user._id]);
+
   useEffect(() => {
     setStudentsSubjects(dataUserSubjects);
     const ids = dataUserSubjects.reduce((ids, item) => {
@@ -227,17 +225,6 @@ export function EvaluateStudents(props) {
                               variant="filled"
                             />
                           )
-                          //   <input
-                          //   type="number"
-                          //   pattern="[0-9]"
-                          //   min="1"
-                          //   max="10"
-                          //   id={subject._id}
-                          //   style={{color:'black'}}
-                          //   value={subject.gradeData.grade}
-                          //   onChange={(ev)=>updateGrade(ev)}
-                          //   disabled={loading}
-                          //   />
                         }
 
                         <Button
@@ -256,19 +243,6 @@ export function EvaluateStudents(props) {
                         >
                           Notează
                         </Button>
-                        {/* <button
-                          disabled={loading}
-                          onClick={() =>
-                            saveGrade(
-                              subject._id,
-                              subject.gradeData.grade,
-                              subject.gradeData._id
-                            )
-                          }
-                          style={{ color: "black", border: "1px solid" }}
-                        >
-                          Save
-                        </button> */}
                       </td>
                     </tr>
                   );

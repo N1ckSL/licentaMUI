@@ -144,7 +144,7 @@ function Acasa() {
             </a>
           </div>
         </div>
-        <div className="footer">
+        <footer className="footer">
           <div className="footer__content" style={{ color: teal[50] }}>
             <div className="footer__socials">
               <Typography>Ne puteti gasi aici</Typography>
@@ -184,7 +184,7 @@ function Acasa() {
               </div>
             </div>
           </div>
-        </div>
+        </footer>
       </div>
     </div>
   );

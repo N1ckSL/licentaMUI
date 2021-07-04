@@ -8,9 +8,13 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import { teal } from "@material-ui/core/colors";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import InstagramIcon from "@material-ui/icons/Instagram";
+import { Link } from "@material-ui/core";
 
 import axios from "axios";
 
@@ -27,7 +31,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={3}>
-          <Typography component={'div'}>{children}</Typography>
+          <Typography component={"div"}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -51,13 +55,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: "#4c4c4c",
-    '& > *': {
-      margin: theme.spacing(1)
+    "& > *": {
+      margin: theme.spacing(1),
     },
-    marginTop:"-100px"
+    marginTop: "-100px",
   },
   input: {
-    display: 'none',
+    display: "none",
   },
 }));
 
@@ -93,7 +97,7 @@ const Orar = () => {
   return (
     <div className="orar__wrapper">
       <AppBar
-      className="appbar"
+        className="appbar"
         position="static"
         style={{
           background: "#4C4C4C",
@@ -124,23 +128,86 @@ const Orar = () => {
       </TabPanel>
       <TabPanel value={value} index={2}>
         <div className="img">
-           <img src="/uploads/2.png"></img>
+          <img src="/uploads/2.png"></img>
         </div>
       </TabPanel>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        { (isAdmin || isSecretar) &&
-      <div className={classes.root}>
-      <input accept="image/*" className={classes.input} id="icon-button-file" type="file" onChange={handlePhoto}/>
-      <label htmlFor="icon-button-file">
-        <IconButton color="secondary" aria-label="upload picture" component="span" >
-          <PhotoCamera />
-        </IconButton>
-      </label>
-      <Button type="submit" color="secondary" variant="contained" size="medium" disabled={photo === 0}> {photo === 0 ? "Selectati poza": "Modifica"}
-        </Button>
-    </div>
-    }
+        {(isAdmin || isSecretar) && (
+          <div className={classes.root}>
+            <input
+              accept="image/*"
+              className={classes.input}
+              id="icon-button-file"
+              type="file"
+              onChange={handlePhoto}
+            />
+            <label htmlFor="icon-button-file">
+              <IconButton
+                color="secondary"
+                aria-label="upload picture"
+                component="span"
+              >
+                <PhotoCamera />
+              </IconButton>
+            </label>
+            <Button
+              type="submit"
+              color="secondary"
+              variant="contained"
+              size="medium"
+              disabled={photo === 0}
+            >
+              {photo === 0 ? "Selectati poza" : "Modifica"}
+            </Button>
+          </div>
+        )}
       </form>
+
+      <footer className="footer orar">
+        <div className="footer__content" style={{ color: teal[50] }}>
+          <div className="footer__socials">
+            <Typography>Ne puteti gasi aici</Typography>
+            <Button
+              size="medium"
+              startIcon={<FacebookIcon />}
+              href="https://www.facebook.com/groups/270345909985839"
+            ></Button>
+            <Button
+              size="medium"
+              startIcon={<InstagramIcon />}
+              href="https://www.instagram.com/ce.liceulteoretic.ioanvoda/"
+            ></Button>
+          </div>
+          <div className="footer__info">
+            <div className="info__left">
+              <Typography>
+                Puteti apela la secretariatul scolii la acest numar:{" "}
+                <span>060034706</span> <br />
+                <br />
+              </Typography>
+            </div>
+            <div className="info__right">
+              <Typography>
+                Orele se tin de Luni pana Vineri, incepand cu ora 8:30 <br />{" "}
+                <br />
+                Puteti vedea orarele{" "}
+                <Link href="/orar" color="secondary">
+                  Aici
+                </Link>{" "}
+                <br />
+                Puteti vedea cadrele didactice{" "}
+                <Link href="/personal" color="secondary">
+                  Aici
+                </Link>{" "}
+                <br /> <br />
+                Daca ati intalnit probleme utilizand acest site, ne puteti
+                contacta pe acest email:
+                <span> example@mail-ltiv.com</span>
+              </Typography>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

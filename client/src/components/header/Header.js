@@ -89,7 +89,7 @@ function Header() {
           </ul>
           <ul className="menu right">
             <li>
-              <Link to="/orar">Orar</Link>
+              <Link to="/orar">Orare</Link>
             </li>
             {isLogged ? (
               <li>

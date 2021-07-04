@@ -73,21 +73,34 @@
 }
 
 .footer{
+    position: relative;
     margin: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
     width: 100%;
     /* border: 1px solid chocolate; */
-    height: 200px;
+    height: auto;
     background: linear-gradient(45deg, #37424F,#4c4c4c);
     animation: ftbg  2s infinite forwards;
     border-radius: 5px 5px 5px 5px;
     /* transition: all 2s ease-in-out; */
 }
 
+.footer.personal{
+    margin-top: 15%;
+    background: linear-gradient(90deg, #37424F,#4c4c4c);
+}
+
+.footer.orar{
+    margin-top: 15%;
+    margin-bottom: 0;
+    top: 12vh;
+}
+
 .footer__content{
     margin-left: 20px;
     margin-top: 10px;
+    padding: 5px;
     display: flex;
     height: 80%;
     width: auto;
@@ -134,38 +147,55 @@
 }
 
 
+/* -----------Personal--------- */
 
 
 
 
 
 
+.accordion__wrapper{
+    display: flex;
+    justify-content: space-between;
+}
 
-
-
-
-
-
-
-
-
-
+.accordion__left{
+margin-right: 10px;
+}
 
 
 .accordion{
-    width: 550px;
+    width: 530px;
     background-color: black;
     color: cyan;
     position: relative;
-    
 }
 
 .accordion__item{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    width: 100%;
+    margin: 5px 0;
+    /* border: 1px solid  springgreen; */
 
+}
+
+.item__role{
+    color:#3F51B5 ;
+    font-weight: 500;
+    margin-right: 10px;
+    width: 35%;
+}
+
+.item__name{
+width: 40%;
+font-weight: 500;
+}
+
+.item__info{
+    width: 25%;
 }
 
 
@@ -189,10 +219,7 @@
 
 
 
-
-
-
-
+/* -----------Responsivity--------- */
 
 @media screen and (max-width:1080px) {
   .accordion{
