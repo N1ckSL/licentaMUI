@@ -95,7 +95,7 @@ function Header() {
               <li>
                 <Link to="/profile">
                   {(isAdmin && "Dashboard") ||
-                    (isProfessor && "Clase") ||
+                    (isProfessor && "Notare") ||
                     (isSecretar && "Informatii") ||
                     "Note"}
                 </Link>

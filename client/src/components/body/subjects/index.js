@@ -52,7 +52,7 @@ export default function Subjects(props) {
           color="primary"
           onClick={() => saveSubjectLocal(dataSubject)}
         >
-          Adauga
+          Adaugă
         </Button>
 
       </div>

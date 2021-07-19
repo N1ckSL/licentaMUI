@@ -121,7 +121,7 @@ export function ReviewGrades(props) {
                         <span>{getSubjectName(grade.userSubject)}</span>
                       </td>
                       <td>{grade.grade}</td>
-                      <td>{
+                      <td style={{textAlign:"center"}}>{
                           typeof grade.grade === 'number'
                           ? grade.grade
                           : grade.grade.split(',')

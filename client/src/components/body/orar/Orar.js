@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import "../orar/orar.css";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -164,50 +164,61 @@ const Orar = () => {
       </form>
 
       <footer className="footer orar">
-        <div className="footer__content" style={{ color: teal[50] }}>
-          <div className="footer__socials">
-            <Typography>Ne puteti gasi aici</Typography>
-            <Button
-              size="medium"
-              startIcon={<FacebookIcon />}
-              href="https://www.facebook.com/groups/270345909985839"
-            ></Button>
-            <Button
-              size="medium"
-              startIcon={<InstagramIcon />}
-              href="https://www.instagram.com/ce.liceulteoretic.ioanvoda/"
-            ></Button>
-          </div>
-          <div className="footer__info">
-            <div className="info__left">
-              <Typography>
-                Puteti apela la secretariatul scolii la acest numar:{" "}
-                <span>060034706</span> <br />
-                <br />
-              </Typography>
+          <div className="footer__content" style={{ color: teal[50] }}>
+            <div className="footer__socials">
+              <Typography style={{textAlign:"center"}}>Ne puteți găsi pe Facebook</Typography>
+              <Button
+                size="medium"
+                startIcon={<FacebookIcon />}
+                href="https://www.facebook.com/groups/270345909985839"
+                style={{display:"flex", justifyContent:"center"}}
+              />
+              <Typography style={{textAlign:"center"}}>Sau ne puteți găsi pe Instagram</Typography>
+              <Button
+                size="medium"
+                startIcon={<InstagramIcon />}
+                href="https://www.instagram.com/ce.liceulteoretic.ioanvoda/"
+                style={{display:"flex", justifyContent:"center"}}
+              />
             </div>
-            <div className="info__right">
-              <Typography>
-                Orele se tin de Luni pana Vineri, incepand cu ora 8:30 <br />{" "}
-                <br />
-                Puteti vedea orarele{" "}
-                <Link href="/orar" color="secondary">
-                  Aici
-                </Link>{" "}
-                <br />
-                Puteti vedea cadrele didactice{" "}
-                <Link href="/personal" color="secondary">
-                  Aici
-                </Link>{" "}
-                <br /> <br />
-                Daca ati intalnit probleme utilizand acest site, ne puteti
-                contacta pe acest email:
-                <span> example@mail-ltiv.com</span>
-              </Typography>
+            <div className="footer__info">
+              <div className="info__left">
+                <Typography>
+                  Puteți apela la secretariatul școlii la acest număr:{" "}
+                  <span>
+                    <br /> (299) 71380
+                  </span>{" "}
+                  <br />
+                  <br />
+                </Typography>
+                <Typography>
+                  Pentru a putea vizualiza notele, este nevoie să vă 
+                  <Link href="/login"> autentificați</Link> sau sa vă <Link href="/register">înregistrați</Link>, dacă nu dețineți un
+                  profil
+                </Typography>
+              </div>
+              <div className="info__right">
+                <Typography>
+                  Orele se țin de Luni până Vineri, începand cu ora 8:30 <br />{" "}
+                  <br />
+                  Puteți vedea orarele{" "}
+                  <Link href="/orar" color="secondary">
+                    aici
+                  </Link>{" "}
+                  <br />
+                  Puteți vedea cadrele didactice{" "}
+                  <Link href="/personal" color="secondary">
+                    aici
+                  </Link>{" "}
+                  <br /> <br />
+                  Daca ați întâlnit probleme utilizând acest site, ne puteți
+                  contacta pe acest email:
+                  <span> probleme@mail-ltiv.com</span>
+                </Typography>
+              </div>
             </div>
           </div>
-        </div>
-      </footer>
+        </footer>
     </div>
   );
 };

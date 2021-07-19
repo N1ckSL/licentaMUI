@@ -31,15 +31,15 @@ function ForgotPassword() {
     }
     return (
         <div className="forgot">
-            <h2>Forgot Your Password?</h2>
+            <h2>Va-ți uitat parola?</h2>
 
             <div className="row">
                 {err && showErrMsg(err)}
                 {success && showSuccessMsg(success)}
-                <label htmlFor="email">Enter your email address</label>
+                <label htmlFor="email">Introduceți adresa email</label>
                 <input type="email" name="email" id="email" value={email}
                 onChange={handleChangeInput} />
-                <button onClick={forgotPassword}>Verify your email</button>
+                <button onClick={forgotPassword}>Verifică</button>
             </div>
         </div>
     )

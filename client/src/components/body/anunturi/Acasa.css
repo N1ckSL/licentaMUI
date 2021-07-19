@@ -3,66 +3,67 @@
 .page__wrapper{
     margin: 0 auto;
     /* max-width: 35vh; */
-    width: 90%;
-    margin-top: -50px;
-}
-
-.page__welcome{
     width: 100%;
-    text-align: center;
-    /* border: 1px solid cyan; */
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-
-.page__welcome h1 {
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+    margin-top: -50px;
 }
 
 .page__content{
     width: 100%;
-    /* border: 1px solid springgreen; */
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
     margin-bottom: 20px;
 }
+#card{
+    opacity: 0.9;
+}
+#card:hover{
+    opacity: 1;
+}
 
 .left__column{
-    margin: 5px;
-    width: auto;
-    /* border: 1px solid palevioletred; */
+    width: 100%;
     padding: 5px;
     height: auto;
     display: flex;
+    justify-content: center;
+    
+    flex-wrap: wrap;
 
 }
 
-.right__column{
-    margin: 5px;
-    width: 60%;
-    /* border: 1px solid maroon; */
-    height: 200px;
+.column__content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.middle{
+    width: 100%;
+    margin: 50px 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .map__wrapper{
     margin: 5px;
-    width: 100%;
+    width: auto;
     border-radius: 10px;
     height: auto;
     transition: all .2s ease-in-out;
+    opacity: 0.8;
 }
 
 .map__wrapper:hover{
-    border: 1px dashed slateblue;
+    /* border: 1px dashed slateblue; */
+    opacity: 1;
 }
 
 .map__content{
-    width: 100%;
+    width: auto;
     height: auto;
 }
 
@@ -80,7 +81,7 @@
     width: 100%;
     /* border: 1px solid chocolate; */
     height: auto;
-    background: linear-gradient(45deg, #37424F,#4c4c4c);
+    background: linear-gradient(45deg, #2c2c2c,#4c4c4c);
     animation: ftbg  2s infinite forwards;
     border-radius: 5px 5px 5px 5px;
     /* transition: all 2s ease-in-out; */
@@ -88,7 +89,8 @@
 
 .footer.personal{
     margin-top: 15%;
-    background: linear-gradient(90deg, #37424F,#4c4c4c);
+    background: linear-gradient(90deg, #2c2c2c,#4c4c4c);
+    width: auto;
 }
 
 .footer.orar{
@@ -151,12 +153,10 @@
 
 
 
-
-
-
 .accordion__wrapper{
     display: flex;
     justify-content: space-between;
+    /* flex-direction: column; */
 }
 
 .accordion__left{
@@ -165,7 +165,7 @@ margin-right: 10px;
 
 
 .accordion{
-    width: 530px;
+    width: 100%;
     background-color: black;
     color: cyan;
     position: relative;
@@ -176,22 +176,21 @@ margin-right: 10px;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    width: 100%;
+    width: 98%;
     margin: 5px 0;
-    /* border: 1px solid  springgreen; */
-
 }
 
 .item__role{
     color:#3F51B5 ;
     font-weight: 500;
-    margin-right: 10px;
     width: 35%;
+    margin-right: 2px;
 }
 
 .item__name{
 width: 40%;
 font-weight: 500;
+margin-left: 5px;
 }
 
 .item__info{

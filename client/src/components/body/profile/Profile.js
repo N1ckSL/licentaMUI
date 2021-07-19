@@ -181,9 +181,11 @@ function Profile() {
   const [errorNew, setErrorNew] = useState("");
   const handleChangeNew = (ev) => {
     const { id, value } = ev.target;
+
     setErrorNew("");
     setNewUser({ ...newUser, [id]: value });
   };
+
   const createNewUser = async () => {
     try {
       const response = await axios.post("/user/create", {
@@ -202,10 +204,12 @@ function Profile() {
           newPassword: "",
           newRole: 0,
         });
-      } else {
-        setErrorNew(response.msg);
+      }  
+      else {
+        setErrorNew(response.msg); 
       }
     } catch (error) {
+      if (newUser.newPassword.length < 5 ) setErrorNew("lungimea trebuie sa fie minim 6");
       setErrorNew(error.response.data.msg);
     }
   };
@@ -344,7 +348,7 @@ function Profile() {
 
                 <TextField
                   color="secondary"
-                  required
+                  required={true}
                   type="text"
                   name="newPassword"
                   id="newPassword"
@@ -372,7 +376,7 @@ function Profile() {
                   onClick={createNewUser}
                   variant="contained"
                   color="primary"
-                  style={{ margin: "10px 0 10px 0" }}
+                  style={{ margin: "10px 0 10px 10px" }}
                 >
                   Adaugă
                 </Button>

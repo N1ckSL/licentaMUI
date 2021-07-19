@@ -47,12 +47,12 @@ export default function App() {
   return (
     <Router>
       <React.Fragment>
-        <Container maxWidth="lg"> {/* COMMENT pentru width mai mare */}
+        {/*<Container maxWidth="lg">  COMMENT pentru width mai mare */}
       <div className="App">
         <Header />
         <Body />
       </div>
-      </Container>
+      {/* </Container> */}
       </React.Fragment>
     </Router>
   );
