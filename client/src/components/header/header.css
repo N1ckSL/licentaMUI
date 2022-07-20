@@ -41,13 +41,12 @@ header a {
 
 .round__logo{
     background: url("./logo_LTIV.png") no-repeat;
-    background-size: cover;
+    background-size: contain;
     top: 5.5vh;
     position: relative;
-    min-width: 120px;
-    min-height: 120px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
-    margin-top: 1.5vh;
     z-index: 99;
 }
 
