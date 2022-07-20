@@ -20,7 +20,7 @@ export function EvaluateStudents(props) {
   useEffect(() => {
     const getSubjectAssigned = async () => {
       const subjectTeacher = await axios.get(
-        `/userSubject/all/${year}/${user._id}`
+        `https://eschool-backend-server.herokuapp.com/userSubject/all/${year}/${user._id}`
       );
       if (subjectTeacher.data.length > 0) {
         setSubjectAssigned(subjectTeacher.data[0].subject._id);
@@ -44,7 +44,7 @@ export function EvaluateStudents(props) {
       return ids;
     }, []);
     const getSubjectGrades = async () => {
-      const gradesSubject = await axios.post(`/subjectGrade/all`, {
+      const gradesSubject = await axios.post(`https://eschool-backend-server.herokuapp.com/subjectGrade/all`, {
         ids,
       });
       setStudentsGrades(gradesSubject.data);
@@ -115,7 +115,7 @@ export function EvaluateStudents(props) {
       setError("");
       let resp = null;
       if (value <= 10 && value >= 1) {
-      resp = await axios.post(`subjectGrade/create`, {
+      resp = await axios.post(`https://eschool-backend-server.herokuapp.com/subjectGrade/create`, {
         subjectStudent: id,
         partial: semester,
         grade: value,
@@ -128,7 +128,7 @@ export function EvaluateStudents(props) {
             return ids;
           }, []);
           const getSubjectGrades = async () => {
-            const gradesSubject = await axios.post(`/subjectGrade/all`, {
+            const gradesSubject = await axios.post(`https://eschool-backend-server.herokuapp.com/subjectGrade/all`, {
               ids,
             });
             setStudentsGrades(gradesSubject.data);

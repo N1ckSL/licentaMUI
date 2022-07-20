@@ -52,7 +52,7 @@ function EditUser() {
     try {
       if (num % 2 !== 0) {
         const res = await axios.patch(
-          `/user/update_role/${editUser._id}`,
+          `https://eschool-backend-server.herokuapp.com/user/update_role/${editUser._id}`,
           {
             role: checkAdmin ? 1 : 0 || checkSecretar ? 3 : 0 || checkProfessor ? 2 : 0 || checkRole ? undefined : 0 ,
           },

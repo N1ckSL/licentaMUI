@@ -14,7 +14,7 @@ function Header() {
 
   const handleLogout = async () => {
     try {
-      await axios.get("/user/logout");
+      await axios.get("https://eschool-backend-server.herokuapp.com/user/logout");
       localStorage.removeItem("firstLogin");
       window.location.href = "/";
     } catch (err) {

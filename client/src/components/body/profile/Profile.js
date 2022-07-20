@@ -56,7 +56,7 @@ function Profile() {
   const updateInfor = () => {
     try {
       axios.patch(
-        "user/update",
+        "https://eschool-backend-server.herokuapp.comuser/update",
         {
           name: name ? name : user.name,
         },
@@ -83,7 +83,7 @@ function Profile() {
 
     try {
       axios.post(
-        "/user/reset",
+        "https://eschool-backend-server.herokuapp.com/user/reset",
         { password },
         {
           headers: { Authorization: token },
@@ -115,7 +115,7 @@ function Profile() {
           )
         ) {
           setLoading(true);
-          const res = await axios.delete(`/user/delete/${id}`, {
+          const res = await axios.delete(`https://eschool-backend-server.herokuapp.com/user/delete/${id}`, {
             headers: { Authorization: token },
           });
           setLoading(false);
@@ -142,7 +142,7 @@ function Profile() {
   useEffect(() => {
     setYear(new Date().getFullYear());
     const getDataDB = async () => {
-      const subjects = await axios.get("/subject/all", {
+      const subjects = await axios.get("https://eschool-backend-server.herokuapp.com/subject/all", {
         headers: { Authorization: token },
       });
       setSubjectsState(subjects.data);
@@ -153,7 +153,7 @@ function Profile() {
   }, [token]);
   useEffect(() => {
     const getDataDB = async () => {
-      const teacherSubject = await axios.get(`/usersubject/all/${year}`);
+      const teacherSubject = await axios.get(`https://eschool-backend-server.herokuapp.com/usersubject/all/${year}`);
       setDataUserSubjects(teacherSubject.data);
     };
     getDataDB();
@@ -166,7 +166,7 @@ function Profile() {
   const saveSubject = async (data) => {
     // data.id=(Math.max.apply(null, subjectsState.map(item => item.id)) || 0) + 1;
 
-    const subjects = await axios.get("/subject/all", {
+    const subjects = await axios.get("https://eschool-backend-server.herokuapp.com/subject/all", {
       headers: { Authorization: token },
     });
     setSubjectsState(subjects.data);
@@ -189,7 +189,7 @@ function Profile() {
 
   const createNewUser = async () => {
     try {
-      const response = await axios.post("/user/create", {
+      const response = await axios.post("https://eschool-backend-server.herokuapp.com/user/create", {
         name: newUser.newName,
         email: newUser.newEmail,
         password: newUser.newPassword,

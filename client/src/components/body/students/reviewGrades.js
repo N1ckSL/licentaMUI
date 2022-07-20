@@ -24,7 +24,7 @@ export function ReviewGrades(props) {
         return ids;
       }, []);
     const getSubjectGrades = async () => {
-      const gradesSubject = await axios.post(`/subjectGrade/all`, {
+      const gradesSubject = await axios.post(`https://eschool-backend-server.herokuapp.com/subjectGrade/all`, {
         ids,
       });
       if (isSubscribed) {

@@ -67,18 +67,18 @@ export default function Teachers(props) {
     let resp;
     if (dataTeacher.previousSubject) {
       if (dataTeacher.subject) {
-        resp = await axios.patch(`userSubject/update`, {
+        resp = await axios.patch(`https://eschool-backend-server.herokuapp.com/userSubject/update`, {
           subject: dataTeacher.subject,
           id: dataTeacher.previousSubject,
         });
       } else {
         resp = await axios.delete(
-          `userSubject/delete/${dataTeacher.previousSubject}`
+          `https://eschool-backend-server.herokuapp.com/userSubject/delete/${dataTeacher.previousSubject}`
         );
       }
     } else {
       if (dataTeacher.subject) {
-        resp = await axios.post(`userSubject/create`, {
+        resp = await axios.post(`https://eschool-backend-server.herokuapp.com/userSubject/create`, {
           user: dataTeacher.id,
           subject: dataTeacher.subject,
           year,

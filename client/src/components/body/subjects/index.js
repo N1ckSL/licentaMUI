@@ -20,7 +20,7 @@ export default function Subjects(props) {
     setDataSubject({ ...dataSubject, [id]: value });
   };
   const saveSubjectLocal = async () => {
-    const responsePost = await axios.post("/subject/create", {
+    const responsePost = await axios.post("https://eschool-backend-server.herokuapp.com/subject/create", {
       name: dataSubject.name,
     });
     if (responsePost.status === 200) {

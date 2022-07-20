@@ -79,7 +79,7 @@ const Orar = () => {
     formData.append("type", value);
     formData.append("photo", photo);
 
-    axios.post("/user/update_orar", formData, {
+    axios.post("https://eschool-backend-server.herokuapp.com/user/update_orar", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

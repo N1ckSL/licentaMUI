@@ -84,7 +84,7 @@ function Register() {
       }
     }
     try {
-      const res = await axios.post("/user/register", {
+      const res = await axios.post("https://eschool-backend-server.herokuapp.com/user/register", {
         name,
         email,
         password,

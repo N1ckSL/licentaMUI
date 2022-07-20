@@ -32,7 +32,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/user/login", { email, password });
+      const res = await axios.post("https://eschool-backend-server.herokuapp.com/user/login", { email, password });
       setUser({ ...user, err: "", success: res.data.msg });
 
       localStorage.setItem("firstLogin", true);
@@ -47,7 +47,7 @@ function Login() {
 
   const responseGoogle = async (response) => {
     try {
-      const res = await axios.post("/user/google_login", {
+      const res = await axios.post("https://eschool-backend-server.herokuapp.com/user/google_login", {
         tokenId: response.tokenId,
       });
 

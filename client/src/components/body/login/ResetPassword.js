@@ -31,7 +31,7 @@ function ResetPassword() {
         return setData({...data, err: "Parola nu coincide!", success: ""})
 
         try {
-            const res = await axios.post("/user/reset", {password}, {
+            const res = await axios.post("https://eschool-backend-server.herokuapp.com/user/reset", {password}, {
                 headers: {Authorization: token}
             })
             return setData({...data, err: "", success: res.data.msg})

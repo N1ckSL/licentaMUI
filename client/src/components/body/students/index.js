@@ -50,7 +50,7 @@ export default function Students(props) {
     try {
       let resp;
       if (ev.target.checked) {
-        resp = await axios.post(`userSubject/create`, {
+        resp = await axios.post(`https://eschool-backend-server.herokuapp.com/userSubject/create`, {
           user: dataStudents.id,
           subject: subject._id,
           year,
@@ -77,7 +77,7 @@ export default function Students(props) {
         )
           ids.push(studentSubjectsState[i]._id);
       }
-      const gradesSubject = await axios.post(`/subjectGrade/all`, {
+      const gradesSubject = await axios.post(`https://eschool-backend-server.herokuapp.com/subjectGrade/all`, {
         ids,
       });
       let isExist = false;

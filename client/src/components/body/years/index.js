@@ -5,7 +5,7 @@ export default function Years(prop) {
   const [years, setYears] = useState([]);
   useEffect(() => {
     const getYears = async () => {
-      const response = await axios.get("/year/all");
+      const response = await axios.get("https://eschool-backend-server.herokuapp.com/year/all");
       if (response.status === 200) {
         setYears(response.data);
       }
