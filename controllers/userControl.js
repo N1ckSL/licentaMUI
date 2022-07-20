@@ -92,7 +92,7 @@ const userControl = {
       const refresh_token = createRefreshToken({ id: user._id });
       res.cookie("refreshtoken", refresh_token, {
         httpOnly: true,
-        path: "/user/refresh_token",
+        path: "https://eschool-backend-server.herokuapp.com/user/refresh_token",
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 zile
       });
 
@@ -179,7 +179,7 @@ const userControl = {
   },
   logout: async (req, res) => {
     try {
-      res.clearCookie("refreshtoken", { path: "/user/refresh_token" });
+      res.clearCookie("refreshtoken", { path: "https://eschool-backend-server.herokuapp.com/user/refresh_token" });
       return res.json({ msg: "Logged out" });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
@@ -255,7 +255,7 @@ const userControl = {
             const refresh_token = createRefreshToken({id: user._id})
             res.cookie('refreshtoken', refresh_token, {
                 httpOnly: true,
-                path: '/user/refresh_token',
+                path: 'https://eschool-backend-server.herokuapp.com/user/refresh_token',
                 maxAge: 7*24*60*60*1000 // 7 days
             })
 
@@ -270,7 +270,7 @@ const userControl = {
             const refresh_token = createRefreshToken({id: newUser._id})
             res.cookie('refreshtoken', refresh_token, {
                 httpOnly: true,
-                path: '/user/refresh_token',
+                path: 'https://eschool-backend-server.herokuapp.com/user/refresh_token',
                 maxAge: 7*24*60*60*1000 // 7 days
             })
 
