@@ -7,7 +7,7 @@ const multer = require("multer")
 const upload = multer()
 
 
-router.post("/upload", upload.single("file"), async function(req, res, next) {
+router.post("https://eschool-backend-server.herokuapp.com/upload", upload.single("file"), async function(req, res, next) {
     const {
       file,
       body: { name }
