@@ -12,7 +12,6 @@ import Body from "./components/body/Body";
 import "./app.css";
 import axios from "axios";
 
-import Container from '@material-ui/core/Container';
 
 export default function App() {
   const dispatch = useDispatch();

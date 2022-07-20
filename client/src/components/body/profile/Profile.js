@@ -146,10 +146,11 @@ function Profile() {
         headers: { Authorization: token },
       });
       setSubjectsState(subjects.data);
-      const teacherSubjet = await axios.get(`/usersubject/all/${year}`);
+
+      // const teacherSubjet = await axios.get(`/usersubject/all/${year}`);
     };
     getDataDB();
-  }, []);
+  }, [token]);
   useEffect(() => {
     const getDataDB = async () => {
       const teacherSubject = await axios.get(`/usersubject/all/${year}`);

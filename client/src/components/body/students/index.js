@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
-import { showErrMsgElev } from "../../utils/notifications/Notifications";
 
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -8,7 +7,7 @@ import Select from "@material-ui/core/Select";
 
 export default function Students(props) {
   const { students, subjects, studentSubjects, year, showMessage, err, showErrMsgElev } = props;
-  const [studentsArray, setStudentsArray] = useState([]);
+  const [, setStudentsArray] = useState([]);
   const [subjectsState, setSubjectsState] = useState([]);
   const [studentSubjectsState, setStudentSubjectsState] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -72,9 +71,9 @@ export default function Students(props) {
       const ids = [];
       for (let i = 0; i < studentSubjectsState.length; i++) {
         if (
-          studentSubjectsState[i].user._id == dataStudents.id &&
-          studentSubjectsState[i].subject._id == subject._id &&
-          studentSubjectsState[i].year == year
+          studentSubjectsState[i].user._id === dataStudents.id &&
+          studentSubjectsState[i].subject._id === subject._id &&
+          studentSubjectsState[i].year === year
         )
           ids.push(studentSubjectsState[i]._id);
       }
@@ -82,7 +81,6 @@ export default function Students(props) {
         ids,
       });
       let isExist = false;
-      let userSubjectId;
 
       if (gradesSubject.data.length > 0) isExist = true;
 
@@ -92,9 +90,10 @@ export default function Students(props) {
           "Elevul are note la aceasta materie. Nu poate fi sters"
         );
       } else {
-        const res = await axios.delete(`/userSubject/delete/${ids[0]}`);
+        // const res = await axios.delete(`/userSubject/delete/${ids[0]}`);
+
         for (let i = 0; i < studentSubjectsState.length; i++) {
-          if (studentSubjectsState[i]._id == ids[0])
+          if (studentSubjectsState[i]._id === ids[0])
             studentSubjectsState.splice(i, 1);
         }
 

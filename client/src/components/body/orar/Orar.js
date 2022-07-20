@@ -118,17 +118,17 @@ const Orar = () => {
       </AppBar>
       <TabPanel value={value} index={0}>
         <div className="img">
-          <img src="/uploads/0.png"></img>
+          <img src="/uploads/0.png" alt="first orar"></img>
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <div className="img">
-          <img src="/uploads/1.png"></img>
+          <img src="/uploads/1.png" alt="second orar"></img>
         </div>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <div className="img">
-          <img src="/uploads/2.png"></img>
+          <img src="/uploads/2.png" alt="third orar"></img>
         </div>
       </TabPanel>
       <form onSubmit={handleSubmit} encType="multipart/form-data">

@@ -3,13 +3,12 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 export function ReviewGrades(props) {
-  const { year, dataUserSubjects } = props;
+  const {dataUserSubjects } = props;
   const [studentsSubjects, setStudentsSubjects] = useState([]);
   const auth = useSelector((state) => state.login);
-  const { user, isProfessor } = auth;
+  const { user } = auth;
   const [semester, setSemester] = useState(1);
   const [studentsGrades, setStudentsGrades] = useState([]);
-  let data = null
 
   useEffect(() => {
     let isSubscribed = true;
@@ -35,14 +34,14 @@ export function ReviewGrades(props) {
 
         for (var i = 0; i < gradesSubject.data.length; i++) {
           if (
-            gradesSubject.data[i].userSubject != prevSubjectID ||
-            gradesSubject.data[i].partial != prevPartial
+            gradesSubject.data[i].userSubject !== prevSubjectID ||
+            gradesSubject.data[i].partial !== prevPartial
           ) {
             gradesSubjectData.push(gradesSubject.data[i]);
             prevSubjectID = gradesSubject.data[i].userSubject;
             prevPartial = gradesSubject.data[i].partial;
           } else {
-            if (prevPartial == gradesSubject.data[i].partial)
+            if (prevPartial === gradesSubject.data[i].partial)
               gradesSubjectData[gradesSubjectData.length - 1].grade +=
                 "," + gradesSubject.data[i].grade;
           }

@@ -6,7 +6,6 @@ import {
   showErrMsg,
   showSuccessMsg,
 } from "../../utils/notifications/Notifications";
-import MultipleCheckbox from "./MultipleCheckbox"
 
 function EditUser() {
   const { id } = useParams();

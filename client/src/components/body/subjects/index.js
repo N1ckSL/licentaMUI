@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 export default function Subjects(props) {
-  const { subjects, saveSubject, success } = props;
+  const { subjects, saveSubject } = props;
   const [subjectArray, setSubjectArray] = useState([]);
   const [dataSubject, setDataSubject] = useState({
     name: "",

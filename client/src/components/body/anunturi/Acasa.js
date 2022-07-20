@@ -470,6 +470,7 @@ function Acasa() {
         <div className="map__wrapper">
           <div className="map__content">
             <iframe
+            title="map-frame"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2775.7965977220556!2d28.21382071544643!3d45.91537637910891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b65cb11c596655%3A0xc7ea73b923e6982f!2sLiceul%20Teoretic%20%22Ioan%20Vod%C4%83%22!5e0!3m2!1sen!2s!4v1625500513482!5m2!1sen!2s"
               width="550"
               height="350"
