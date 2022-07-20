@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import axios from "axios";
+
 import Button from "@material-ui/core/Button";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Menu, MenuItem } from "@material-ui/core";
+import {instance} from "../../axios/instance";
 
 function Header() {
   const auth = useSelector((state) => state.login);
@@ -14,7 +15,7 @@ function Header() {
 
   const handleLogout = async () => {
     try {
-      await axios.get("https://eschool-backend-server.herokuapp.com/user/logout");
+      await instance.get("/user/logout");
       localStorage.removeItem("firstLogin");
       window.location.href = "/";
     } catch (err) {

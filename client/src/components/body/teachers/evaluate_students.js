@@ -1,9 +1,9 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { Button, TextField } from "@material-ui/core";
 import CreateIcon from "@material-ui/icons/Create";
+import {instance} from "../../../axios/instance";
 
 export function EvaluateStudents(props) {
   const { year, dataUserSubjects } = props;
@@ -19,8 +19,8 @@ export function EvaluateStudents(props) {
   const { user } = auth;
   useEffect(() => {
     const getSubjectAssigned = async () => {
-      const subjectTeacher = await axios.get(
-        `https://eschool-backend-server.herokuapp.com/userSubject/all/${year}/${user._id}`
+      const subjectTeacher = await instance.get(
+        `/userSubject/all/${year}/${user._id}`
       );
       if (subjectTeacher.data.length > 0) {
         setSubjectAssigned(subjectTeacher.data[0].subject._id);
@@ -44,7 +44,7 @@ export function EvaluateStudents(props) {
       return ids;
     }, []);
     const getSubjectGrades = async () => {
-      const gradesSubject = await axios.post(`https://eschool-backend-server.herokuapp.com/subjectGrade/all`, {
+      const gradesSubject = await instance.post(`/subjectGrade/all`, {
         ids,
       });
       setStudentsGrades(gradesSubject.data);
@@ -115,7 +115,7 @@ export function EvaluateStudents(props) {
       setError("");
       let resp = null;
       if (value <= 10 && value >= 1) {
-      resp = await axios.post(`https://eschool-backend-server.herokuapp.com/subjectGrade/create`, {
+      resp = await instance.post(`/subjectGrade/create`, {
         subjectStudent: id,
         partial: semester,
         grade: value,
@@ -128,7 +128,7 @@ export function EvaluateStudents(props) {
             return ids;
           }, []);
           const getSubjectGrades = async () => {
-            const gradesSubject = await axios.post(`https://eschool-backend-server.herokuapp.com/subjectGrade/all`, {
+            const gradesSubject = await instance.post(`/subjectGrade/all`, {
               ids,
             });
             setStudentsGrades(gradesSubject.data);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+
 import {
   showErrMsg,
   showSuccessMsg,
@@ -15,6 +15,7 @@ import {
 } from "../../utils/validation/Validation";
 
 import TextField from "@material-ui/core/TextField";
+import {instance} from "../../../axios/instance";
 
 const initialState = {
   name: "",
@@ -84,7 +85,7 @@ function Register() {
       }
     }
     try {
-      const res = await axios.post("https://eschool-backend-server.herokuapp.com/user/register", {
+      const res = await instance.post("/user/register", {
         name,
         email,
         password,

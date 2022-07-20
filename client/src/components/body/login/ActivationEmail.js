@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+
+import {instance} from "../../../axios/instance";
 import {
   showErrMsg,
   showSuccessMsg,
@@ -15,7 +16,7 @@ function ActivationEmail() {
     if (activation_token) {
       const activationEmail = async () => {
         try {
-            const res = await axios.post("https://eschool-backend-server.herokuapp.com/user/activation", {activation_token})
+            const res = await instance.post("/user/activation", {activation_token})
             setSuccess(res.data.msg)
         } catch (err) {
             err.response.data.msg && setErr( err.response.data.msg )

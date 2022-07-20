@@ -10,7 +10,8 @@ import {
 import Header from "./components/header/Header";
 import Body from "./components/body/Body";
 import "./app.css";
-import axios from "axios";
+
+import {instance} from "./axios/instance";
 
 
 export default function App() {
@@ -22,7 +23,7 @@ export default function App() {
     const firstLogin = localStorage.getItem("firstLogin");
     if (firstLogin) {
       const getToken = async () => {
-        const res = await axios.post("https://eschool-backend-server.herokuapp.com/user/refresh_token", null);
+        const res = await instance.post("/user/refresh_token", null);
         dispatch({ type: "GET_TOKEN", payload: res.data.access_token });
       };
       getToken();
@@ -41,7 +42,6 @@ export default function App() {
       getUser();
     }
   }, [token, dispatch]);
-
   
   return (
     <Router>

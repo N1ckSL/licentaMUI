@@ -1,11 +1,11 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
+import {instance} from "../../../axios/instance";
 
 export default function Years(prop) {
   const [years, setYears] = useState([]);
   useEffect(() => {
     const getYears = async () => {
-      const response = await axios.get("https://eschool-backend-server.herokuapp.com/year/all");
+      const response = await instance.get("/year/all");
       if (response.status === 200) {
         setYears(response.data);
       }

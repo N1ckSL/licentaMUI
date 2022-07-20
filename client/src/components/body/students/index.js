@@ -1,9 +1,10 @@
-import axios from "axios";
+
 import React, { useState, useEffect, useRef } from "react";
 
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
+import {instance} from "../../../axios/instance";
 
 export default function Students(props) {
   const { students, subjects, studentSubjects, year, showMessage, err, showErrMsgElev } = props;
@@ -50,7 +51,7 @@ export default function Students(props) {
     try {
       let resp;
       if (ev.target.checked) {
-        resp = await axios.post(`https://eschool-backend-server.herokuapp.com/userSubject/create`, {
+        resp = await instance.post(`/userSubject/create`, {
           user: dataStudents.id,
           subject: subject._id,
           year,
@@ -77,7 +78,7 @@ export default function Students(props) {
         )
           ids.push(studentSubjectsState[i]._id);
       }
-      const gradesSubject = await axios.post(`https://eschool-backend-server.herokuapp.com/subjectGrade/all`, {
+      const gradesSubject = await instance.post(`/subjectGrade/all`, {
         ids,
       });
       let isExist = false;

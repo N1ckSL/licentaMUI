@@ -16,7 +16,8 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import { Link } from "@material-ui/core";
 
-import axios from "axios";
+
+import {instance} from "../../../axios/instance";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -79,7 +80,7 @@ const Orar = () => {
     formData.append("type", value);
     formData.append("photo", photo);
 
-    axios.post("https://eschool-backend-server.herokuapp.com/user/update_orar", formData, {
+    instance.post("/user/update_orar", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

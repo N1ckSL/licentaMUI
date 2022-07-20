@@ -1,8 +1,9 @@
 import ACTIONS from './index'
-import axios from 'axios'
+
+import {instance} from '../../axios/instance'
 
 export const fetchAllUsers = async (token) => {
-    const res = await axios.get('https://eschool-backend-server.herokuapp.com/user/all_infor', {
+    const res = await instance.get('/user/all_infor', {
         headers: {Authorization: token}
     })
     return res

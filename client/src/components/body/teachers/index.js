@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import {instance} from "../../../axios/instance";
 
 export default function Teachers(props) {
   const { teachers, subjects, teacherSubjects, year } = props;
@@ -67,18 +67,18 @@ export default function Teachers(props) {
     let resp;
     if (dataTeacher.previousSubject) {
       if (dataTeacher.subject) {
-        resp = await axios.patch(`https://eschool-backend-server.herokuapp.com/userSubject/update`, {
+        resp = await instance.patch(`/userSubject/update`, {
           subject: dataTeacher.subject,
           id: dataTeacher.previousSubject,
         });
       } else {
-        resp = await axios.delete(
-          `https://eschool-backend-server.herokuapp.com/userSubject/delete/${dataTeacher.previousSubject}`
+        resp = await instance.delete(
+          `/userSubject/delete/${dataTeacher.previousSubject}`
         );
       }
     } else {
       if (dataTeacher.subject) {
-        resp = await axios.post(`https://eschool-backend-server.herokuapp.com/userSubject/create`, {
+        resp = await instance.post(`/userSubject/create`, {
           user: dataTeacher.id,
           subject: dataTeacher.subject,
           year,

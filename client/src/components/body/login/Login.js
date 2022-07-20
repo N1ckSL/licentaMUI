@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import axios from "axios";
+
 import {
   showErrMsg,
   showSuccessMsg,
@@ -8,6 +8,8 @@ import {
 import { dispatchLogin } from "../../../redux/actions/loginAction";
 import { useDispatch } from "react-redux";
 import { GoogleLogin } from "react-google-login";
+
+import {instance} from "../../../axios/instance";
 
 import TextField from "@material-ui/core/TextField";
 
@@ -32,7 +34,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://eschool-backend-server.herokuapp.com/user/login", { email, password });
+      const res = await instance.post("/user/login", { email, password });
       setUser({ ...user, err: "", success: res.data.msg });
 
       localStorage.setItem("firstLogin", true);
@@ -47,7 +49,7 @@ function Login() {
 
   const responseGoogle = async (response) => {
     try {
-      const res = await axios.post("https://eschool-backend-server.herokuapp.com/user/google_login", {
+      const res = await instance.post("/user/google_login", {
         tokenId: response.tokenId,
       });
 

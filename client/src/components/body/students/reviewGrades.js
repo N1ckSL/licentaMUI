@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import {instance} from "../../../axios/instance";
 
 export function ReviewGrades(props) {
   const {dataUserSubjects } = props;
@@ -24,7 +24,7 @@ export function ReviewGrades(props) {
         return ids;
       }, []);
     const getSubjectGrades = async () => {
-      const gradesSubject = await axios.post(`https://eschool-backend-server.herokuapp.com/subjectGrade/all`, {
+      const gradesSubject = await instance.post(`/subjectGrade/all`, {
         ids,
       });
       if (isSubscribed) {

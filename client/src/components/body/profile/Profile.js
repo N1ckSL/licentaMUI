@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { isLength, isMatch } from "../../utils/validation/Validation";
@@ -23,6 +23,7 @@ import { EvaluateStudents } from "../teachers/evaluate_students";
 
 import { Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
+import {instance} from "../../../axios/instance";
 
 const initialState = {
   name: "",
@@ -55,8 +56,8 @@ function Profile() {
 
   const updateInfor = () => {
     try {
-      axios.patch(
-        "https://eschool-backend-server.herokuapp.comuser/update",
+      instance.patch(
+        "/user/update",
         {
           name: name ? name : user.name,
         },
@@ -82,8 +83,8 @@ function Profile() {
       return setData({ ...data, err: "Password did not match.", success: "" });
 
     try {
-      axios.post(
-        "https://eschool-backend-server.herokuapp.com/user/reset",
+      instance.post(
+        "/user/reset",
         { password },
         {
           headers: { Authorization: token },
@@ -115,7 +116,7 @@ function Profile() {
           )
         ) {
           setLoading(true);
-          const res = await axios.delete(`https://eschool-backend-server.herokuapp.com/user/delete/${id}`, {
+          const res = await instance.delete(`/user/delete/${id}`, {
             headers: { Authorization: token },
           });
           setLoading(false);
@@ -142,7 +143,7 @@ function Profile() {
   useEffect(() => {
     setYear(new Date().getFullYear());
     const getDataDB = async () => {
-      const subjects = await axios.get("https://eschool-backend-server.herokuapp.com/subject/all", {
+      const subjects = await instance.get("/subject/all", {
         headers: { Authorization: token },
       });
       setSubjectsState(subjects.data);
@@ -153,7 +154,7 @@ function Profile() {
   }, [token]);
   useEffect(() => {
     const getDataDB = async () => {
-      const teacherSubject = await axios.get(`https://eschool-backend-server.herokuapp.com/usersubject/all/${year}`);
+      const teacherSubject = await instance.get(`/usersubject/all/${year}`);
       setDataUserSubjects(teacherSubject.data);
     };
     getDataDB();
@@ -166,7 +167,7 @@ function Profile() {
   const saveSubject = async (data) => {
     // data.id=(Math.max.apply(null, subjectsState.map(item => item.id)) || 0) + 1;
 
-    const subjects = await axios.get("https://eschool-backend-server.herokuapp.com/subject/all", {
+    const subjects = await instance.get("/subject/all", {
       headers: { Authorization: token },
     });
     setSubjectsState(subjects.data);
@@ -189,7 +190,7 @@ function Profile() {
 
   const createNewUser = async () => {
     try {
-      const response = await axios.post("https://eschool-backend-server.herokuapp.com/user/create", {
+      const response = await instance.post("/user/create", {
         name: newUser.newName,
         email: newUser.newEmail,
         password: newUser.newPassword,

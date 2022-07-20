@@ -1,9 +1,9 @@
 import React, { useState} from 'react'
-import axios from "axios"
+
 import {useParams} from "react-router-dom"
 import {showErrMsg,showSuccessMsg} from "../../utils/notifications/Notifications"
 import {isLength,isMatch} from "../../utils/validation/Validation"
-
+import {instance} from '../../../axios/instance'
 
 const initialState = {
     password: "",
@@ -31,7 +31,7 @@ function ResetPassword() {
         return setData({...data, err: "Parola nu coincide!", success: ""})
 
         try {
-            const res = await axios.post("https://eschool-backend-server.herokuapp.com/user/reset", {password}, {
+            const res = await instance.post("/user/reset", {password}, {
                 headers: {Authorization: token}
             })
             return setData({...data, err: "", success: res.data.msg})

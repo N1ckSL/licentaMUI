@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import axios from "axios";
+
 import {
   showErrMsg,
   showSuccessMsg,
 } from "../../utils/notifications/Notifications";
+import {instance} from "../../../axios/instance";
 
 function EditUser() {
   const { id } = useParams();
@@ -51,8 +52,8 @@ function EditUser() {
   const handleUpdate = async () => {
     try {
       if (num % 2 !== 0) {
-        const res = await axios.patch(
-          `https://eschool-backend-server.herokuapp.com/user/update_role/${editUser._id}`,
+        const res = await instance.patch(
+          `/user/update_role/${editUser._id}`,
           {
             role: checkAdmin ? 1 : 0 || checkSecretar ? 3 : 0 || checkProfessor ? 2 : 0 || checkRole ? undefined : 0 ,
           },

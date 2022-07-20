@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
-import axios from 'axios'
+
 import {isEmail} from '../../utils/validation/Validation'
 import {showErrMsg, showSuccessMsg} from '../../utils/notifications/Notifications'
+
+import {instance} from '../../../axios/instance'
 
 const initialState = {
     email: '',
@@ -22,7 +24,7 @@ function ForgotPassword() {
             return setData({...data, err: 'Invalid emails.', success: ''})
             
         try {
-            const res = await axios.post('https://eschool-backend-server.herokuapp.com/user/forgot', {email})
+            const res = await instance.post('/user/forgot', {email})
 
             return setData({...data, err: '', success: res.data.msg})
         } catch (err) {

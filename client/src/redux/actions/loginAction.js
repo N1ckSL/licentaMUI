@@ -1,5 +1,6 @@
 import ACTIONS from './index'
-import axios from 'axios'
+
+import {instance} from '../../axios/instance'
 
 export const dispatchLogin = () => {
     return {
@@ -8,7 +9,7 @@ export const dispatchLogin = () => {
 }
 
 export const fetchUser = async (token) => {
-    const res = await axios.get('https://eschool-backend-server.herokuapp.com/user/infor', {
+    const res = await instance.get('/user/infor', {
         headers: {Authorization: token}
     })
     return res
